@@ -10,11 +10,14 @@ This short Python program generates statistical information from a bikeshare pro
  - New York City
  - Washington
 
+Data can be further segregated into specific months or days to be analyzed.
+
 A menuing system generates statistics in three different categories:
  1. Time: Most frequent travel times
  2. Station: Start/Stop and combination
  3. Trip: Duration information
  4. User: Types, Gender and year of birth
+
 
 ### Files used
 * LTBikeshare2.py

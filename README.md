@@ -20,11 +20,11 @@ A menuing system generates statistics in three different categories:
 
 
 ### Files used
-* LTBikeshare2.py
-* chicago.csv
-* new_york_city.csv
-* washington.csv
-* menu_info.csv
+* LTBikeshare.py - main Python program
+* chicago.csv - Chicago data
+* new_york_city.csv - New York City data
+* washington.csv - Washington data
+* menu_info.csv - data used to generate menu
 
 ### Credits
 This repository was forked from a

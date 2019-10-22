@@ -9,6 +9,8 @@ import numpy as np
 global all_stats
 all_stats = False
 
+""" As presented here, the data files are located in the same directory as
+    the program file."""
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }

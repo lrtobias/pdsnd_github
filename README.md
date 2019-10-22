@@ -2,18 +2,27 @@
 Created on October 22, 2019.
 
 ### Project Title
-GitHub with Bikeshare Analysis Python code
+Bikeshare Analysis
 
 ### Description
-This project tracks code and documentation modifications of a python program.
+This short Python program generates statistical information from a bikeshare program from three different cities.  Currently, those cities are:
+ - Chicago
+ - New York City
+ - Washington
+
+A menuing system generates statistics in three different categories:
+ 1. Time: Most frequent travel times
+ 2. Station: Start/Stop and combination
+ 3. Trip: Duration information
+ 4. User: Types, Gender and year of birth
 
 ### Files used
-LTBikeshare2.py
-chicago.csv
-new_york_city.csv
-washington.csv
-menu_info.csv
+* LTBikeshare2.py
+* chicago.csv
+* new_york_city.csv
+* washington.csv
+* menu_info.csv
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
-
+This repository was forked from a
+[Udacity GitHub project](https://github.com/udacity/pdsnd_github/).

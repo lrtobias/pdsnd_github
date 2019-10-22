@@ -2,6 +2,10 @@ import time
 import pandas as pd
 import numpy as np
 
+""" Global variable used as a toggle for printing all of the statistics
+    together as one option.
+    "False" is the default value and returns the user to the calculation menu
+    when completed. """
 global all_stats
 all_stats = False
 

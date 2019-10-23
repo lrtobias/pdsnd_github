@@ -1,0 +1,18 @@
+﻿item_no,menu,menu_no,option_name
+1,pick_city,1,Chicago
+2,pick_city,2,New York
+3,pick_city,3,Washington
+4,pick_city,0,To Exit program
+5,pick_month,1,January
+6,pick_month,2,February
+7,pick_month,3,March
+8,pick_month,4,April
+9,pick_month,5,May
+10,pick_month,6,June
+11,pick_day,1,Monday
+12,pick_day,2,Tuesday
+13,pick_day,3,Wednesday
+14,pick_day,4,Thursday
+15,pick_day,5,Friday
+16,pick_day,6,Saturday
+17,pick_day,7,Sunday

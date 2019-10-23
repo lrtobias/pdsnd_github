@@ -1,6 +1,7 @@
 import time
 import pandas as pd
 import numpy as np
+import csv
 
 """ Global variable used as a toggle for printing all of the statistics
     together as one option.
@@ -18,6 +19,15 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 """ Used repeatedly in this program when raw input is invalid"""
 def valid_entry():
     print ("Please enter a valid number for your selection")
+
+""" To print options of a given menu from csv file"""
+def menu_generator(menu_option):
+    with open('menu_info.csv') as menufile:
+        readmenu = csv.reader(menufile, delimiter=',')
+        for row in readmenu:
+            if (row[1]) == menu_option:
+                print(row[2],": ",row[3])
+
 
 """ Sub-menu to select calculations to perform.  Broken into 4 sections
     allow user to view the results before continuing.  An option enables
@@ -93,10 +103,13 @@ def main_menu():
     print ("    Which city's data would you")
     print ("         like to review?")
 
-    print ("1. Chicago")
-    print ("2. New York")
-    print ("3. Washington")
-    print ("0. To exit program")
+    menu_generator('pick_city')
+    #with open('menu_info.csv') as menufile:
+    #    readmenu = csv.reader(menufile, delimiter=',')
+    #    for row in readmenu:
+    #        if (row[1]) == ""'pick_city'"":
+    #            print(row[2],": ",row[3])
+
     print (40 * '-')
     while True:
         selection = input("Enter your selection: ")
@@ -124,86 +137,87 @@ def main_menu():
     else:
         valid_entry()
 
-# Second menu prompts user to select month for review
-    print (40 * '-')
-    print ("Data from: "+ city.title())
-    print ("     Which month do you want to view?")
-    print ("1. January         2. February")
-    print ("3. March           4. April")
-    print ("5. May             6. June")
-    print ("0. All")
-    print (40 * '-')
-    while True:
-        selection = input("Enter your selection: ")
-        try:
-            selection = int(selection)
-            if 0 <= selection <= 6:
-                break
-            else:
+    if selection > 0:
+        # Second menu prompts user to select month for review
+        print (40 * '-')
+        print ("Data from: "+ city.title())
+        print ("     Which month do you want to view?")
+        print ("1. January         2. February")
+        print ("3. March           4. April")
+        print ("5. May             6. June")
+        print ("0. All")
+        print (40 * '-')
+        while True:
+            selection = input("Enter your selection: ")
+            try:
+                selection = int(selection)
+                if 0 <= selection <= 6:
+                    break
+                else:
+                    valid_entry()
+            except ValueError:
                 valid_entry()
-        except ValueError:
+
+        global month
+        if selection == 1:
+            month = 'january'
+        elif selection == 2:
+            month = 'february'
+        elif selection == 3:
+            month = 'march'
+        elif selection == 4:
+            month = 'april'
+        elif selection == 5:
+            month = 'may'
+        elif selection == 6:
+            month = 'june'
+        elif selection == 0:
+            month = 'all'
+        else:
             valid_entry()
 
-    global month
-    if selection == 1:
-        month = 'january'
-    elif selection == 2:
-        month = 'february'
-    elif selection == 3:
-        month = 'march'
-    elif selection == 4:
-        month = 'april'
-    elif selection == 5:
-        month = 'may'
-    elif selection == 6:
-        month = 'june'
-    elif selection == 0:
-        month = 'all'
-    else:
-        valid_entry()
-
-# This section is for the day of the week menu
-    print (40 * '-')
-    print ("Data from: "+ month.title())
-    print ("     Which day do you want to view?")
-    print ("1. Monday          2. Tuesday")
-    print ("3. Wednesday       4. Thursday")
-    print ("5. Friday          6. Saturday")
-    print ("7. Sunday          0. All days")
-    print (40 * '-')
-    while True:
-        selection = input("Enter your selection: ")
-        try:
-            selection = int(selection)
-            if 0 <= selection <= 7:
-                break
-            else:
+    # This section is for the day of the week menu
+        print (40 * '-')
+        print ("Data from: "+ month.title())
+        print ("     Which day do you want to view?")
+        print ("1. Monday          2. Tuesday")
+        print ("3. Wednesday       4. Thursday")
+        print ("5. Friday          6. Saturday")
+        print ("7. Sunday          0. All days")
+        print (40 * '-')
+        while True:
+            selection = input("Enter your selection: ")
+            try:
+                selection = int(selection)
+                if 0 <= selection <= 7:
+                    break
+                else:
+                    valid_entry()
+            except ValueError:
                 valid_entry()
-        except ValueError:
-            valid_entry()
 
-    global day
-    if selection == 1:
-        day = 'monday'
-    elif selection == 2:
-        day = 'tuesday'
-    elif selection == 3:
-        day = 'wednesday'
-    elif selection == 4:
-        day = 'thursday'
-    elif selection == 5:
-        day = 'friday'
-    elif selection == 6:
-        day = 'saturday'
-    elif selection == 7:
-        day = 'sunday'
-    elif selection == 0:
-        day = 'all'
-    else:
-        valid_entry()
-    print('************| LOADING DATA |************\n')
-    load_data(city,month,day)
-    calculation_menu()
+        global day
+        if selection == 1:
+            day = 'monday'
+        elif selection == 2:
+            day = 'tuesday'
+        elif selection == 3:
+            day = 'wednesday'
+        elif selection == 4:
+            day = 'thursday'
+        elif selection == 5:
+            day = 'friday'
+        elif selection == 6:
+            day = 'saturday'
+        elif selection == 7:
+            day = 'sunday'
+        elif selection == 0:
+            day = 'all'
+        else:
+            valid_entry()
+        print('************| LOADING DATA |************\n')
+        load_data(city,month,day)
+        calculation_menu()
     return
 
 """ Loads data for the specified city and filters by month and day if applicable.
@@ -215,6 +229,7 @@ def main_menu():
     Returns:
         df - pandas DataFrame containing city data filtered by month and day
 """
+
 def load_data(city, month, day):
     global df
     # load data file into a dataframe

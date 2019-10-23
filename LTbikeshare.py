@@ -14,6 +14,14 @@ CITY_DATA = { 'chicago': 'chicago.csv',
 def valid_entry():
     print ("Please enter a valid number for your selection")
 
+""" To print options of a given menu from csv file"""
+def menu_generator(menu_option):
+    with open('menu_info.csv') as menufile:
+        readmenu = csv.reader(menufile, delimiter=',')
+        for row in readmenu:
+            if (row[1]) == menu_option:
+                print(row[2],": ",row[3])
+
 """ Sub-menu to select calculations to perform.  Broken into 4 sections
     allow user to view the results before continuing.  An option enables
     running all of the calculations with one selection. """
@@ -88,11 +96,12 @@ def main_menu():
     print ("    Which city's data would you")
     print ("         like to review?")
 
-    with open('menu_info.csv') as menufile:
-        readmenu = csv.reader(menufile, delimiter=',')
-        for row in readmenu:
-            if (row[1]) == ""'pick_city'"":
-                print(row[2],": ",row[3])
+    menu_generator('pick_city')
+    #with open('menu_info.csv') as menufile:
+    #    readmenu = csv.reader(menufile, delimiter=',')
+    #    for row in readmenu:
+    #        if (row[1]) == ""'pick_city'"":
+    #            print(row[2],": ",row[3])
 
     print ("0. To exit program")
     print (40 * '-')
@@ -213,6 +222,7 @@ def main_menu():
     Returns:
         df - pandas DataFrame containing city data filtered by month and day
 """
+
 def load_data(city, month, day):
     global df
     # load data file into a dataframe

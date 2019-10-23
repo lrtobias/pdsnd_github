@@ -22,6 +22,7 @@ def menu_generator(menu_option):
             if (row[1]) == menu_option:
                 print(row[2],": ",row[3])
 
+
 """ Sub-menu to select calculations to perform.  Broken into 4 sections
     allow user to view the results before continuing.  An option enables
     running all of the calculations with one selection. """
@@ -130,86 +131,87 @@ def main_menu():
     else:
         valid_entry()
 
-# Second menu prompts user to select month for review
-    print (40 * '-')
-    print ("Data from: "+ city.title())
-    print ("     Which month do you want to view?")
-    print ("1. January         2. February")
-    print ("3. March           4. April")
-    print ("5. May             6. June")
-    print ("0. All")
-    print (40 * '-')
-    while True:
-        selection = input("Enter your selection: ")
-        try:
-            selection = int(selection)
-            if 0 <= selection <= 6:
-                break
-            else:
+    if selection > 0:
+        # Second menu prompts user to select month for review
+        print (40 * '-')
+        print ("Data from: "+ city.title())
+        print ("     Which month do you want to view?")
+        print ("1. January         2. February")
+        print ("3. March           4. April")
+        print ("5. May             6. June")
+        print ("0. All")
+        print (40 * '-')
+        while True:
+            selection = input("Enter your selection: ")
+            try:
+                selection = int(selection)
+                if 0 <= selection <= 6:
+                    break
+                else:
+                    valid_entry()
+            except ValueError:
                 valid_entry()
-        except ValueError:
+
+        global month
+        if selection == 1:
+            month = 'january'
+        elif selection == 2:
+            month = 'february'
+        elif selection == 3:
+            month = 'march'
+        elif selection == 4:
+            month = 'april'
+        elif selection == 5:
+            month = 'may'
+        elif selection == 6:
+            month = 'june'
+        elif selection == 0:
+            month = 'all'
+        else:
             valid_entry()
 
-    global month
-    if selection == 1:
-        month = 'january'
-    elif selection == 2:
-        month = 'february'
-    elif selection == 3:
-        month = 'march'
-    elif selection == 4:
-        month = 'april'
-    elif selection == 5:
-        month = 'may'
-    elif selection == 6:
-        month = 'june'
-    elif selection == 0:
-        month = 'all'
-    else:
-        valid_entry()
-
-# This section is for the day of the week menu
-    print (40 * '-')
-    print ("Data from: "+ month.title())
-    print ("     Which day do you want to view?")
-    print ("1. Monday          2. Tuesday")
-    print ("3. Wednesday       4. Thursday")
-    print ("5. Friday          6. Saturday")
-    print ("7. Sunday          0. All days")
-    print (40 * '-')
-    while True:
-        selection = input("Enter your selection: ")
-        try:
-            selection = int(selection)
-            if 0 <= selection <= 7:
-                break
-            else:
+    # This section is for the day of the week menu
+        print (40 * '-')
+        print ("Data from: "+ month.title())
+        print ("     Which day do you want to view?")
+        print ("1. Monday          2. Tuesday")
+        print ("3. Wednesday       4. Thursday")
+        print ("5. Friday          6. Saturday")
+        print ("7. Sunday          0. All days")
+        print (40 * '-')
+        while True:
+            selection = input("Enter your selection: ")
+            try:
+                selection = int(selection)
+                if 0 <= selection <= 7:
+                    break
+                else:
+                    valid_entry()
+            except ValueError:
                 valid_entry()
-        except ValueError:
-            valid_entry()
 
-    global day
-    if selection == 1:
-        day = 'monday'
-    elif selection == 2:
-        day = 'tuesday'
-    elif selection == 3:
-        day = 'wednesday'
-    elif selection == 4:
-        day = 'thursday'
-    elif selection == 5:
-        day = 'friday'
-    elif selection == 6:
-        day = 'saturday'
-    elif selection == 7:
-        day = 'sunday'
-    elif selection == 0:
-        day = 'all'
-    else:
-        valid_entry()
-    print('************| LOADING DATA |************\n')
-    load_data(city,month,day)
-    calculation_menu()
+        global day
+        if selection == 1:
+            day = 'monday'
+        elif selection == 2:
+            day = 'tuesday'
+        elif selection == 3:
+            day = 'wednesday'
+        elif selection == 4:
+            day = 'thursday'
+        elif selection == 5:
+            day = 'friday'
+        elif selection == 6:
+            day = 'saturday'
+        elif selection == 7:
+            day = 'sunday'
+        elif selection == 0:
+            day = 'all'
+        else:
+            valid_entry()
+        print('************| LOADING DATA |************\n')
+        load_data(city,month,day)
+        calculation_menu()
     return
 
 """ Loads data for the specified city and filters by month and day if applicable.

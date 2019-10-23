@@ -103,7 +103,6 @@ def main_menu():
     #        if (row[1]) == ""'pick_city'"":
     #            print(row[2],": ",row[3])
 
-    print ("0. To exit program")
     print (40 * '-')
     while True:
         selection = input("Enter your selection: ")

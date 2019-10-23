@@ -1,6 +1,7 @@
 import time
 import pandas as pd
 import numpy as np
+import csv
 
 global all_stats
 all_stats = False
@@ -87,9 +88,12 @@ def main_menu():
     print ("    Which city's data would you")
     print ("         like to review?")
 
-    print ("1. Chicago")
-    print ("2. New York")
-    print ("3. Washington")
+    with open('menu_info.csv') as menufile:
+        readmenu = csv.reader(menufile, delimiter=',')
+        for row in readmenu:
+            if (row[1]) == ""'pick_city'"":
+                print(row[2],": ",row[3])
+
     print ("0. To exit program")
     print (40 * '-')
     while True:
